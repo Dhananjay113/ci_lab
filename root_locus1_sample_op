@@ -1,0 +1,11 @@
+clc;
+clear all;
+
+syms s;
+
+num = [5];
+den = sym2poly(s*(s+1)*(s+2));
+
+sys = tf(num, den);
+
+rlocus(sys)
