@@ -1,0 +1,24 @@
+clc;
+close all;
+clearvars;
+% Lag Compensator Design
+plant_num = 5;
+plant_den = [2 1 0];
+plant_tf = tf(plant_num,plant_den);
+comp_num = [1 4];
+comp_den = [1 16 76 96];
+comp_tf = tf(comp_num,comp_den);
+% Plotting Gain and Phase margin for plant
+figure;
+margin(plant_tf);
+grid on;
+% Compensated System
+lag_comp_sys = plant_tf*comp_tf;
+disp(lag_comp_sys);
+hold on;
+margin(lag_comp_sys);
+legend ('plant', 'comp_plant');
+% Plotting Gain and Phase margin for compensator
+figure;
+margin(comp_tf);
+grid on;
