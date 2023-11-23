@@ -1,0 +1,32 @@
+clear all;
+close all;
+clc;
+
+num1 = [1];
+den1 = [2 100];
+
+w = 0:0.01:pi
+h = freqs(num1,den1,w);
+
+mag = 20*log10(abs(h));
+phase = angle(h)*180/pi;
+
+figure
+subplot(211)
+plot(w,mag)
+xlabel('Frequesncy')
+ylabel('Magnitude')
+
+grid on
+axis tight
+
+subplot(212)
+plot(w,phase)
+xlabel('Frequesncy')
+ylabel('Magnitude')
+
+grid on
+axis tight
+
+freqs(num1,den1)
+
