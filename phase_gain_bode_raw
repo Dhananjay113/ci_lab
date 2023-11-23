@@ -1,0 +1,19 @@
+syms s;
+
+num = 100;
+den = sym2poly(s+30);
+
+G = tf(num, den);
+T = feedback(G,1);
+
+pole(T)
+rlocus(G)
+bode(G), grid
+step(T), title('Closed-loop response for k=1')
+
+[Gm,Pm] = margin(2*G);
+GmdB = 20*log10(Gm)   % gain margin in dB
+Pm  % phase margin in degrees
+
+step(feedback(2*G,1)), title('Closed-loop response for k=2')
+
