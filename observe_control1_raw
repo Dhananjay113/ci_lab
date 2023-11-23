@@ -1,0 +1,29 @@
+%% Check for observability and controllability 
+clear 
+close all
+clc
+%% Consider the system representation
+A=[0 6 -5;1 0 2;3 2 4];
+B=[0; 1; 2];
+C=[1 2 3];
+D=0;
+% eigenvaues (just for checking stability)
+E=eig(A);
+%% Controllability Test
+Qc1=[B A*B A^2*B];
+det_Qc1 = det(Qc1);
+R1=rank(Qc1);
+disp('Controllability Matrix');
+disp(Qc1);
+fprintf('Determinant Value %d\n',det_Qc1);
+fprintf('Rank %d\n',R1);
+%% Observability Test
+At = A';
+Ct=C';
+Qo1=[Ct, At*Ct, (At)^2*Ct];
+R2=rank(Qo1);
+det_Qo1=det(Qo1);
+disp('Observability Matrix');
+disp(Qo1);
+fprintf('Determinant Value %d\n',det_Qo1);
+fprintf('Rank %d \n',R2);
