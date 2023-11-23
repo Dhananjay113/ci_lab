@@ -1,0 +1,26 @@
+clc;
+close all;
+clearvars;
+% Lead Compensator Design
+plant_num = [4];
+plant_den = [1 2];
+plant_tf = tf(plant_num,plant_den);
+comp_num = [0.36 1];
+comp_den = [0.09 1];
+comp_tf = tf(comp_num,comp_den);
+% Plotting Gain and Phase margin for plant
+figure;
+margin(plant_tf);
+grid on;
+hold on;
+% Compensated System
+lead_comp_sys = plant_tf*comp_tf;
+disp(lead_comp_sys);
+margin(lead_comp_sys);
+hold off;
+legend ('plant', 'comp_plant');
+% Plotting Gain and Phase margin for compensator
+figure;
+margin(comp_tf);
+grid on;
+
